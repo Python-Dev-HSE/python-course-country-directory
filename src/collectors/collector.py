@@ -250,7 +250,7 @@ class NewsCollector(BaseCollector):
         return CACHE_TTL_NEWS
 
     async def collect(
-            self, locations: FrozenSet[LocationDTO] = frozenset(), **kwargs: Any
+        self, locations: FrozenSet[LocationDTO] = frozenset(), **kwargs: Any
     ) -> None:
         """
         Сбор информации о новостях.
@@ -275,7 +275,7 @@ class NewsCollector(BaseCollector):
 
             result_str = json.dumps(result)
             async with aiofiles.open(
-                    await self.get_file_path(filename), mode="w"
+                await self.get_file_path(filename), mode="w"
             ) as file:
                 await file.write(result_str)
 

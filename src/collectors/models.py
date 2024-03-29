@@ -181,6 +181,7 @@ class NewsInfoDTO(BaseModel):
     published_at: datetime
     content: str
 
+
 class LocationInfoDTO(BaseModel):
     """
     Модель данных для представления общей информации о месте.

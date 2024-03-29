@@ -40,7 +40,6 @@ class Renderer:
             "Площадь страны": self.location_info.location.square,
             "Широта": self.location_info.location.geographical_latitude,
             "Долгота": self.location_info.location.geographical_longitude,
-
             "Время": await self._format_current_time(),
             "Часовой пояс": self.location_info.weather.timezone,
             "Описание погоды": self.location_info.weather.description,
@@ -58,7 +57,6 @@ class Renderer:
                 f"|{key:<{first_column_width}}|{value:>{second_column_width}}|"
                 for key, value in values.items()
             ]
-
         )
         formatted_values.append("-" * (first_column_width + second_column_width + 3))
         formatted_values.extend(
@@ -69,11 +67,11 @@ class Renderer:
         return tuple(formatted_values)
 
     async def _format_news_line(
-            self,
-            first_col_name: str,
-            content: str,
-            first_column_width: int,
-            second_column_width: int,
+        self,
+        first_col_name: str,
+        content: str,
+        first_column_width: int,
+        second_column_width: int,
     ) -> list[str]:
         """
         Форматирование информации о новостях.
@@ -92,17 +90,17 @@ class Renderer:
             [
                 f"|{'':<{first_column_width}}|{content[line:line + second_column_width]:<{second_column_width}}|"
                 for line in range(
-                second_column_width, len(content), second_column_width
-            )
+                    second_column_width, len(content), second_column_width
+                )
             ]
         )
         return values
 
     async def _format_news(
-            self,
-            news: list[NewsInfoDTO] | None,
-            first_column_width: int,
-            second_column_width: int,
+        self,
+        news: list[NewsInfoDTO] | None,
+        first_column_width: int,
+        second_column_width: int,
     ) -> list[str]:
         """
         Форматирование информации о новостях.
@@ -124,15 +122,15 @@ class Renderer:
         ]
         for item in news:
             for first_col_name, content in zip(
-                    first_column_names,
-                    [
-                        item.source,
-                        item.title,
-                        item.url,
-                        item.published_at.strftime("%d.%m.%Y %H:%M"),
-                        item.description,
-                        item.content,
-                    ],
+                first_column_names,
+                [
+                    item.source,
+                    item.title,
+                    item.url,
+                    item.published_at.strftime("%d.%m.%Y %H:%M"),
+                    item.description,
+                    item.content,
+                ],
             ):
                 values.extend(
                     await self._format_news_line(
@@ -171,7 +169,8 @@ class Renderer:
         """
 
         render_time = datetime.datetime.now() + datetime.timedelta(
-            seconds=self.location_info.weather.offset_seconds)
+            seconds=self.location_info.weather.offset_seconds
+        )
         return render_time.strftime("%X, %x")
 
     async def _format_currency_rates(self) -> str:

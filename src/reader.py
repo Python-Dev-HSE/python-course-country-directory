@@ -8,16 +8,16 @@ from typing import Optional
 from collectors.collector import (
     CountryCollector,
     CurrencyRatesCollector,
+    NewsCollector,
     WeatherCollector,
-    NewsCollector
 )
 from collectors.models import (
     CountryDTO,
     CurrencyInfoDTO,
     LocationDTO,
     LocationInfoDTO,
+    NewsInfoDTO,
     WeatherInfoDTO,
-    NewsInfoDTO
 )
 
 
